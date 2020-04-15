@@ -1,0 +1,13 @@
+.title-center {
+    margin: 0 auto;
+}
+
+.padding{
+    margin:10px;
+    /*max-width: 500px;*/
+}
+
+mat-card {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+}
