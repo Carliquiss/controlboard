@@ -79,16 +79,28 @@ def getDocuments():
 
 def getDeviceInfo(device_name):
     query = {"name":device_name}
-    documents = COLLECTION.find(query)
-
+    documents = COLLECTION.find(query, {"_id":0})
+    
     stringDocs = []
     for doc in documents: 
         stringDocs.append(doc)
     
-    return stringDocs
+    return {"info":stringDocs}
 
 
 def clearCollection():
     COLLECTION.delete_many({})
+
+
+def getDevicesNames():
+    names = COLLECTION.find().distinct("name")
+    names_string = []
+
+    for name in names: 
+        names_string.append(name)
+    
+    return {"names":names_string}
+
+
 
 

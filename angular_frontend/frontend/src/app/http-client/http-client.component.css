@@ -1,0 +1,19 @@
+.avatar {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1200px-Circle-icons-computer.svg.png");
+    background-size: cover;
+}
+
+.card_size{
+    width: 70%;
+    height: 70%;
+    padding: 10px;
+}
+
+.quita-puntos{
+    list-style-type: none;
+ }
+
+.mat-card {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+}

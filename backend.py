@@ -1,9 +1,10 @@
-
+from flask_cors import CORS
 from flask import Flask, request
 from mongo_handler import * 
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 """
@@ -30,6 +31,20 @@ y botones para obtener shell
 @app.route('/')
 def index():
     return "Pagina principal"
+
+
+@app.route('/getNames', methods=['GET'])
+def getNames():
+    return getDevicesNames()
+
+
+@app.route('/getDeviceInfo', methods=['GET'])
+def getDevice():
+    name = request.args.get("name")
+    if name:
+        return getDeviceInfo(name)
+    else: 
+        return "ERROR no name provided"
 
 
 @app.route('/update', methods=['POST'])

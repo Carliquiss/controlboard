@@ -1,5 +1,5 @@
 <mat-toolbar color=primary>
-  <span class="title-center">Command and Control</span>
+  <span class="title-center">💻 Command and Control 💻</span>
 </mat-toolbar>
 
 
@@ -8,30 +8,39 @@
   
   <mat-grid-tile>
     <mat-card class="padding">
+
       <mat-card-header>
         <mat-card-title>MAP</mat-card-title>
         <mat-card-subtitle>Geographic representation</mat-card-subtitle>    
       </mat-card-header>
+      
+      <app-map></app-map>
+
+    </mat-card>
+  </mat-grid-tile>
+
+
+  <mat-grid-tile>
+    <mat-card class="padding">
+
+      <mat-card-header>
+        <mat-card-title>DEVICE INFO</mat-card-title>
+        <mat-card-subtitle>Device info</mat-card-subtitle>    
+      </mat-card-header>
     
       <mat-card-content>
-        <p>Aquí un mapa con las localizaciones de las IPs</p>
+        <p>Aquí va información del dispositivo que se haya clickado</p>
       </mat-card-content>
     
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile>
-    <mat-card class="padding">
-      <mat-card-header>
-        <mat-card-title>DEVICES</mat-card-title>
-        <mat-card-subtitle>List of zombies devices</mat-card-subtitle>    
-      </mat-card-header>
-    
-      <mat-card-content>
-        <p>Aquí iría una lista con los nombres y las IPs de los dispositivos</p>
-      </mat-card-content>
-    
+  <mat-grid-tile colspan=2>
+    <mat-card>
+      <app-http-client></app-http-client>
     </mat-card>
   </mat-grid-tile>
 
 </mat-grid-list>
+
+
