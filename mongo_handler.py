@@ -13,23 +13,24 @@ COLLECTION = DB["devices"]
 def populate(collection):
 
     test_info = {
-        "status" : "OFF",
-        "ip"     : "0.0.0.0",
-        "name"   : "test_device",
-        "time"   : datetime.now()
+        "status"        : "OFF",
+        "ip"            : "0.0.0.0",
+        "name"          : "test_device",
+        "coordinates"   : ["37.926868", "-1.066112"],
+        "time"          : datetime.now()
     }
 
 
     test_info2 = {
-        "status" : "ON",
-        "ip"     : "1.1.1.1",
-        "name"   : "test_device2",
-        "time"   : datetime.now()
+        "status"        : "ON",
+        "ip"            : "1.1.1.1",
+        "name"          : "test_device2",
+        "coordinates"   : ["37.1882", "-3.6067"],
+        "time"          : datetime.now()
     }
 
     collection.insert_one(test_info)
     collection.insert_one(test_info2)
-
     
 
 
@@ -51,7 +52,7 @@ def collExist(db, collection_name):
 
 
 def checkInfo(info):
-    fields = ["status", "ip", "name", "time"]
+    fields = ["status", "ip", "name", "time", "coordinates"]
 
     for field in info: 
         if field not in fields:
@@ -100,6 +101,26 @@ def getDevicesNames():
         names_string.append(name)
     
     return {"names":names_string}
+
+
+def getCoordinates():
+    devices = getDevicesNames()
+    DevicesCoordinates = []
+    
+    for device in devices["names"]: 
+        last_message = COLLECTION.find({"name":device}, {"_id":0}).sort([('timestamp', -1)]).limit(1)
+
+        for message in last_message: 
+
+            DevicesCoordinates.append({
+                "name":device,
+                "coordinates":message["coordinates"]
+            })
+
+    return {"response":DevicesCoordinates}
+
+
+    
 
 
 

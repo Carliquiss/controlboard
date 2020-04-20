@@ -1,6 +1,8 @@
 from flask_cors import CORS
 from flask import Flask, request
 from mongo_handler import * 
+import requests
+import json
 
 
 app = Flask(__name__)
@@ -27,6 +29,10 @@ y botones para obtener shell
 
 """
 
+def locateIP(ip):
+    json_repsonse = json.loads(requests.get("https://ipinfo.io/{}/json".format(ip)).text)
+    return {"coordinates":[json_repsonse["loc"].split(",")]}
+
 
 @app.route('/')
 def index():
@@ -36,6 +42,11 @@ def index():
 @app.route('/getNames', methods=['GET'])
 def getNames():
     return getDevicesNames()
+
+
+@app.route('/getCoordinates', methods=['GET'])
+def getCoordinatesFromDB():
+    return getCoordinates()
 
 
 @app.route('/getDeviceInfo', methods=['GET'])
@@ -50,6 +61,9 @@ def getDevice():
 @app.route('/update', methods=['POST'])
 def update():
     info = request.get_json()
+    print(info)
+    info.update(locateIP(info["ip"]))
+
     insertInfo(info)
     
     return "OK"

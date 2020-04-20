@@ -1,12 +1,14 @@
+&nbsp;
+&nbsp;
 <mat-card-header>
     <mat-card-title>DEVICES LIST</mat-card-title>
     <mat-card-subtitle>List of zombies devices</mat-card-subtitle>    
 </mat-card-header>
   
 <mat-card-content>
-    <button mat-raised-button color="primary" (click)="updateDevices()">Update Devices info</button>
+    <!--<button mat-raised-button color="primary" (click)="updateDevices()">Update Devices info</button>-->
 
-    <mat-grid-list cols="4" rowHeight="1.5:1">
+    <mat-grid-list cols="3" rowHeight="2:1">
 
         <li *ngFor="let data of array_last_devices_info" class="quita-puntos">
         
@@ -24,6 +26,7 @@
                         <p>Status: {{data.status}}</p>
                         <p>IP: {{data.ip}}</p>
                         <p>TimeStamp: {{data.time}}</p>
+                        <p>Coordinates: {{data.coordinates}}</p>
 
                         <button mat-raised-button color="primary" (click)="updateDevices()">Get Shell</button>
                     </mat-card-content>
