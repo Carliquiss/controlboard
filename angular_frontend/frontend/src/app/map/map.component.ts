@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { circle, latLng, Map, polygon, marker, Layer, tileLayer } from 'leaflet';
 import { HttpClient } from '@angular/common/http';
+import { DeviceInfoService } from '../device-info.service';
+
 
 @Component({
   selector: 'app-map',
@@ -14,7 +16,7 @@ export class MapComponent implements OnInit {
   markers_array: any;
   markers: Layer[] = [];
 
-  constructor(public httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient, private deviceInfo: DeviceInfoService) { }
 
   ngOnInit(): void {
     this.addmarkers()
@@ -51,13 +53,17 @@ export class MapComponent implements OnInit {
         this.markers_array = res
 
         for (let coordinates of this.markers_array.response){
+          coordinates = coordinates.coordinates
+          const newMarker = marker([parseFloat(coordinates[0][0]), parseFloat(coordinates[0][1])]).on('click', ()=>{
+            this.deviceInfo.sendInfo("prueba");
 
-          const newMarker = marker([parseFloat(coordinates.coordinates[0][0]), parseFloat(coordinates.coordinates[0][1])]);
+          });
           this.markers.push(newMarker);
         };
       });
 
-      console.log(this.markers)
+      console.log(this.markers);
   }
+
 
 }

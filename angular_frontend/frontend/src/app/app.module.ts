@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 /*Components*/
 import { MapComponent } from './map/map.component';
 import { HttpClientComponent } from './http-client/http-client.component';
+import { ShowINfoComponent } from './show-info/show-info.component';
 
 
 
@@ -31,7 +32,8 @@ import { HttpClientComponent } from './http-client/http-client.component';
   declarations: [
     AppComponent,
     MapComponent,
-    HttpClientComponent
+    HttpClientComponent,
+    ShowINfoComponent
   ],
   imports: [
     BrowserModule,
