@@ -15,6 +15,7 @@ export class MapComponent implements OnInit {
 
   markers_array: any;
   markers: Layer[] = [];
+  parsed_coordinates: any; 
 
   constructor(public httpClient: HttpClient, private deviceInfo: DeviceInfoService) { }
 
@@ -33,6 +34,7 @@ export class MapComponent implements OnInit {
     center: latLng(40.4381311, -3.8196196)
   };
 
+/*
   layersControl = {
     baseLayers: {
         'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
@@ -45,6 +47,7 @@ export class MapComponent implements OnInit {
         'Marker': marker(latLng(+"51.6515", +"-0.0850"))
     }
   }
+*/
 
   
   addmarkers(){
@@ -53,9 +56,10 @@ export class MapComponent implements OnInit {
         this.markers_array = res
 
         for (let coordinates of this.markers_array.response){
-          coordinates = coordinates.coordinates
-          const newMarker = marker([parseFloat(coordinates[0][0]), parseFloat(coordinates[0][1])]).on('click', ()=>{
-            this.deviceInfo.sendInfo("prueba");
+          this.parsed_coordinates = coordinates.coordinates[0]
+
+          const newMarker = marker([parseFloat(this.parsed_coordinates[0]), parseFloat(this.parsed_coordinates[1])]).on('click', ()=>{
+            this.deviceInfo.sendInfo(JSON.stringify(coordinates.name));
 
           });
           this.markers.push(newMarker);

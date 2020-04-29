@@ -9,9 +9,8 @@ export class DeviceInfoService {
 
   constructor() { }
 
-  sendInfo(device:string){
-    console.log("llamando a sendInfo")
-    this.subject.next({name:device});
+  sendInfo(info:string){
+    this.subject.next({"data":info});
   }
 
   clearInfo(){

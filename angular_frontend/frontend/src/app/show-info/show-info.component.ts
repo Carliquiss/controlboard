@@ -11,24 +11,30 @@ import { DeviceInfoService } from '../device-info.service';
 export class ShowINfoComponent implements OnInit {
 
   subscription: Subscription;
-  deviceInfo: any;
-  vector_test: any[] = [];
+  valueReceived: any;
 
   constructor(private deviceinfoService: DeviceInfoService) {
+
+    this.valueReceived = {"data":""}
+
     this.subscription = this.deviceinfoService.getInfo().subscribe(info => {
       if(info){
-        console.log("yeyy recibido")
         this.addinfo(info)
+      }
+      else{
+        console.log("pues nada")
       }
     })
    }
 
   addinfo(info:string){
-    this.vector_test.push(info)
+    this.valueReceived = info;
   }
 
   ngOnInit(): void {
   }
 
+  updateinfo(){
+  }
 
 }
