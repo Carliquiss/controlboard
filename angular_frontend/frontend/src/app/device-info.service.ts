@@ -9,8 +9,8 @@ export class DeviceInfoService {
 
   constructor() { }
 
-  sendInfo(info:string){
-    this.subject.next({"data":info});
+  sendInfo(info:any){
+    this.subject.next({"data":JSON.parse(info)});
   }
 
   clearInfo(){

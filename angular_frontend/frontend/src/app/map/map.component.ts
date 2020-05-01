@@ -55,11 +55,11 @@ export class MapComponent implements OnInit {
     this.httpClient.get('http://localhost:5000/getCoordinates').subscribe((res)=>{
         this.markers_array = res
 
-        for (let coordinates of this.markers_array.response){
-          this.parsed_coordinates = coordinates.coordinates[0]
+        for (let device_info of this.markers_array.response){
+          this.parsed_coordinates = device_info.coordinates[0]
 
           const newMarker = marker([parseFloat(this.parsed_coordinates[0]), parseFloat(this.parsed_coordinates[1])]).on('click', ()=>{
-            this.deviceInfo.sendInfo(JSON.stringify(coordinates.name));
+            this.deviceInfo.sendInfo(JSON.stringify(device_info));
 
           });
           this.markers.push(newMarker);

@@ -15,7 +15,7 @@ export class ShowINfoComponent implements OnInit {
 
   constructor(private deviceinfoService: DeviceInfoService) {
 
-    this.valueReceived = {"data":""}
+    this.valueReceived = {"data":{"name":"Click any marker on the map and the button to show the info"}}
 
     this.subscription = this.deviceinfoService.getInfo().subscribe(info => {
       if(info){

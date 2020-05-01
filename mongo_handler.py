@@ -111,11 +111,13 @@ def getCoordinates():
         last_message = COLLECTION.find({"name":device}, {"_id":0}).sort([('timestamp', -1)]).limit(1)
 
         for message in last_message: 
-
+            """
             DevicesCoordinates.append({
                 "name":device,
                 "coordinates":message["coordinates"]
             })
+            """
+            DevicesCoordinates.append(message)
 
     return {"response":DevicesCoordinates}
 
