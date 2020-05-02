@@ -7,15 +7,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./http-client.component.css']
 })
 
+
+/*Esta es la segunda componente en la cual hacemos peticiones http al backend para obtener los datos
+de todos los dispositivos y mostrarlos a través de tarjetas para cada uno de ellos con lo que se 
+puede tener una vista rápida de todos los dispositivos infectados  */
+
 export class HttpClientComponent implements OnInit {
 
-  devices_names: any;     /*Array with the name of the different devices*/
+  devices_names: any;     /*Array con el nombre de los diferentes dispositivos*/
 
-  array_devices_info: any;      /*Array with all the jsons from the different devices*/
-  array_last_devices_info: any; /*Array with just the last json from each deice*/
+  array_devices_info: any;      /*Array con los json de todos los dispositivos*/
+  array_last_devices_info: any; /*Array solo con el json más actual de cada dispositivo*/
 
   messages: any;
-
+  
   constructor(public httpClient: HttpClient) { 
     this.array_devices_info = [];
     this.array_last_devices_info = [];
@@ -25,9 +30,12 @@ export class HttpClientComponent implements OnInit {
     this.updateDevices()
   }
 
+
   getDeviceInfo(names){
 
-    /*To get the different jsons from all the devices on names array*/
+    /*Para cada uno de los nombres de dispositivos que se le pasan a la función en la variable "names"
+    se pide su información y nos quedamos con el último mensaje, es decir, con el que tiene la información
+    más actual*/
     for(let name of names)
     {
       this.httpClient.get('http://localhost:5000/getDeviceInfo?name=' + name).subscribe((res)=>{
@@ -39,16 +47,10 @@ export class HttpClientComponent implements OnInit {
         this.array_last_devices_info.push(this.messages)
       });
     }
-
-
-    /*To get just the last json of each device to print it on the html*/
-    for(let full_info of this.array_devices_info){
-      this.array_last_devices_info.push();
-    }
-
   }
 
-  /*To get the different names of all the devices in the DB*/
+  /*Obtenemos los nombres de los diferentes dispositivos para pedir la información de cada uno de ellos pasandoselos
+  como variable de entrada a la función anterior*/
   updateDevices(){
     this.httpClient.get('http://localhost:5000/getNames').subscribe((res)=>{
         

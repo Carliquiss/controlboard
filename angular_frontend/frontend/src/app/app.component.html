@@ -1,17 +1,34 @@
+<!-- Ponemos un título para que quede más estética -->
 <mat-toolbar color=primary>
   <span class="title-center">💻 Command and Control 💻</span>
 </mat-toolbar>
 
 
 
+<!-- Como tenemos tres secciones vamos a dividir la página principal en 3 partes de  la siguiente forma:  -->
+
+<!--  +--------------+   -->
+<!--  |   1  |   2   |   -->
+<!--  +--------------+   -->
+<!--  |      3       |   -->
+<!--  +--------------+   -->
+
+<!--  Cada una de las partes está explicada en el fichero app.component.ts -->
+
+
+
 <mat-grid-list cols="2" rowHeight="2:1">
   
   <mat-grid-tile>
+
+    <!-- Carta de la componente 1 -->
     <mat-card class="padding">
 
       <mat-card-header>
+
         <mat-card-title>MAP</mat-card-title>
         <mat-card-subtitle>Geographic representation</mat-card-subtitle>    
+
       </mat-card-header>
       
       <app-map></app-map>
@@ -21,6 +38,8 @@
 
 
   <mat-grid-tile>
+
+    <!-- Carta de la componente 2 -->
     <mat-card class="padding">
 
       <mat-card-header>
@@ -37,5 +56,7 @@
 
 </mat-grid-list>
 
+
+<!-- Componente 3 la cual ya no va confinada en una carta -->
 <app-http-client></app-http-client>
 
