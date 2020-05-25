@@ -1,8 +1,14 @@
-from flask_cors import CORS
-from flask import Flask, request
-from mongo_handler import * 
-import requests
 import json
+import requests
+
+from flask_cors import CORS
+from random import randint
+from mongo_handler import * 
+from datetime import datetime
+from flask import Flask, request
+
+
+
 
 
 app = Flask(__name__)
@@ -30,8 +36,16 @@ y botones para obtener shell
 """
 
 def locateIP(ip):
-    json_repsonse = json.loads(requests.get("https://ipinfo.io/{}/json".format(ip)).text)
-    return {"coordinates":[json_repsonse["loc"].split(",")]}
+    
+    try:
+        #If its an external IP
+        json_repsonse = json.loads(requests.get("https://ipinfo.io/{}/json".format(ip)).text)
+        return {"coordinates":[json_repsonse["loc"].split(",")]}
+    
+    except:
+        #If its a local IP, randomize the coordinates.         
+        RandomCoordinates = {"0":["40.08828","-35.10374"], "1":["-7.77712","75.04758"],"2":["-35.16760", "128.96533"], "3":["45.32390", "35.99458"]}
+        return {"coordinates":RandomCoordinates[str(randint(0,3))]}
 
 
 @app.route('/')
@@ -61,8 +75,12 @@ def getDevice():
 @app.route('/update', methods=['POST'])
 def update():
     info = request.get_json()
-    print(info)
+
+    ip = request.remote_addr
+
+    info.update({"ip":ip})
     info.update(locateIP(info["ip"]))
+    info.update({"time":str(datetime.now())})
 
     insertInfo(info)
     
