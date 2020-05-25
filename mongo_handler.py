@@ -52,7 +52,7 @@ def collExist(db, collection_name):
 
 
 def checkInfo(info):
-    fields = ["status", "ip", "name", "time", "coordinates"]
+    fields = ["status", "ip", "name", "time", "coordinates", "shell"]
 
     for field in info: 
         if field not in fields:

@@ -74,17 +74,45 @@ def getDevice():
 
 @app.route('/update', methods=['POST'])
 def update():
-    info = request.get_json()
 
-    ip = request.remote_addr
+    try:
+        info = request.get_json()
 
-    info.update({"ip":ip})
-    info.update(locateIP(info["ip"]))
-    info.update({"time":str(datetime.now())})
+        ip = request.remote_addr
 
-    insertInfo(info)
+        info.update({"ip":ip})
+        info.update(locateIP(info["ip"]))
+        info.update({"time":str(datetime.now())})
+
+        insertInfo(info)
     
-    return "OK"
+        return "OK"
+
+    except: 
+        print(request.get_json())
+        return "Problems getting JSON"
+
+
+@app.route('/updateGet', methods=['GET'])
+def updateGet():
+
+    try: 
+        ip = request.remote_addr
+        info = {}
+
+        info.update({"name":request.args.get("name")})
+        info.update({"status":request.args.get("status")})
+        info.update({"shell":[request.args.get("shellIP"), request.args.get("shellPort")]})
+        info.update({"ip":ip})
+        info.update(locateIP(info["ip"]))
+        info.update({"time":str(datetime.now())})
+
+        insertInfo(info)
+
+        return "OK"
+    
+    except: 
+        return "ERROR"
 
 
 
