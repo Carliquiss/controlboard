@@ -15,39 +15,18 @@ app = Flask(__name__)
 CORS(app)
 
 
-"""
-
-Debe de haber un endpoint para actualizar los datos del dispositivo cada x tiempo, además se tiene que ver que si en x minutos 
-no se ha recibido señal de dicho dispositivo se da por "apagado" (status a Off). También debe de haber otro endpoint para que
-el front se comunique con el backend y le pida los ultimos datos de cualquier dispositivo y cosas así. 
-
-La base de datos (en MongoDB) guardará los datos para cada dispositivo y permitirá obtenerlos o cambiarlos.
-
-Los datos del dispositivo son: 
-    - Status: On/Off (Por defecto siempre será On)
-    - IP
-    - Nombre
-    - Time Stamp del mensaje
-
-
-El frontend deberá plotear geográficamente las IP de cada dispositivo, así como poner uno u otro icono (según Off, On) 
-y botones para obtener shell
-
-"""
-
 def locateIP(ip):
     
     try:
         #If its an external IP
         json_repsonse = json.loads(requests.get("https://ipinfo.io/{}/json".format(ip)).text)
-        print(json_repsonse["loc"].split(","))
         return {"coordinates":[json_repsonse["loc"].split(",")]}
     
     except:
         #If its a local IP, randomize the coordinates.         
         RandomCoordinates = {"0":["40.08828","-35.10374"], "1":["-7.77712","75.04758"],"2":["-35.16760", "128.96533"], "3":["45.32390", "35.99458"]}
         coordinates = RandomCoordinates[str(randint(0,3))]
-        print(coordinates)
+
         return {"coordinates":coordinates}
 
 

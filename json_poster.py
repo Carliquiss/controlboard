@@ -33,7 +33,7 @@ print(json_info["loc"])
 
 test_info = {
     "status"        : "ON",
-    "name"          : "test_device",
+    "name"          : "router_asus",
     "shellIP"       : "10.10.10.2",
     "shellPort"     : "4443"
 }
@@ -41,7 +41,7 @@ test_info = {
 
 test_info2 = {
     "status"        : "ON",
-    "name"          : "test_device2",
+    "name"          : "wavlink_n300",
     "shellIP"       : "10.10.10.2",
     "shellPort"     : "4444"
 }
@@ -49,7 +49,7 @@ test_info2 = {
 
 test_info3 = {
     "status"        : "ON",
-    "name"          : "test_device3",
+    "name"          : "wavlink_ac1200",
      "shellIP"       : "10.10.10.2",
     "shellPort"     : "4445"
 }
