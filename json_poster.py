@@ -32,33 +32,33 @@ print(json_info["loc"])
 """
 
 test_info = {
-    "status"        : "OFF",
-    "ip"            : "79.147.171.51 ",
+    "status"        : "ON",
     "name"          : "test_device",
-    "time"          : str(datetime.now())
+    "shellIP"       : "10.10.10.2",
+    "shellPort"     : "4443"
 }
 
 
 test_info2 = {
     "status"        : "ON",
-    "ip"            : "194.35.233.206",
     "name"          : "test_device2",
-    "time"          : str(datetime.now())
+    "shellIP"       : "10.10.10.2",
+    "shellPort"     : "4444"
 }
 
 
 test_info3 = {
-    "status"        : "OFF",
-    "ip"            : "195.158.248.163",
+    "status"        : "ON",
     "name"          : "test_device3",
-    "time"          : str(datetime.now())
+     "shellIP"       : "10.10.10.2",
+    "shellPort"     : "4445"
 }
 
 test_info4 = {
     "status"        : "ON",
-    "ip"            : "195.154.38.231",
     "name"          : "test_device4",
-    "time"          : str(datetime.now())
+    "shellIP"       : "10.10.10.2",
+    "shellPort"     : "4446"
 }
 
 

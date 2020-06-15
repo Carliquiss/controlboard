@@ -40,12 +40,15 @@ def locateIP(ip):
     try:
         #If its an external IP
         json_repsonse = json.loads(requests.get("https://ipinfo.io/{}/json".format(ip)).text)
+        print(json_repsonse["loc"].split(","))
         return {"coordinates":[json_repsonse["loc"].split(",")]}
     
     except:
         #If its a local IP, randomize the coordinates.         
         RandomCoordinates = {"0":["40.08828","-35.10374"], "1":["-7.77712","75.04758"],"2":["-35.16760", "128.96533"], "3":["45.32390", "35.99458"]}
-        return {"coordinates":RandomCoordinates[str(randint(0,3))]}
+        coordinates = RandomCoordinates[str(randint(0,3))]
+        print(coordinates)
+        return {"coordinates":coordinates}
 
 
 @app.route('/')
@@ -76,10 +79,13 @@ def getDevice():
 def update():
 
     try:
-        info = request.get_json()
-
+        infoPosted = request.get_json()
         ip = request.remote_addr
+        info = {}
 
+        info.update({"name":infoPosted["name"]})
+        info.update({"status":infoPosted["status"]})
+        info.update({"shell":[infoPosted["shellIP"], infoPosted["shellPort"]]})
         info.update({"ip":ip})
         info.update(locateIP(info["ip"]))
         info.update({"time":str(datetime.now())})

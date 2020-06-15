@@ -52,7 +52,8 @@ export class MapComponent implements OnInit {
         this.markers_array = res
 
         for (let device_info of this.markers_array.response){
-          this.parsed_coordinates = device_info.coordinates[0]
+          
+          this.parsed_coordinates = device_info.coordinates
 
           /*Creamos los distintos marcadores y establecemos el método OnClick para pasar la info al servicio device-info */
           const newMarker = marker([parseFloat(this.parsed_coordinates[0]), parseFloat(this.parsed_coordinates[1])]).on('click', ()=>{
