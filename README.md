@@ -32,3 +32,4 @@ python3 backend.py
 cd frontend
 ng serve
 ```
+Go to http://locahost:4200 to see the web page
