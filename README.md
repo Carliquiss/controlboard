@@ -3,7 +3,7 @@ _This project contains a Backend and a Frontend to show information from IoT dev
 
 ## ⚙️ How does it works 
 This project contains a Backend and a Frontend: 
- * **Backend**: Made with Flask (Python module). It receives a HTTP GET request or a JSON and store the information on a DB managed by MongoDB. 
+ * **Backend**: Made with Flask (Python module). It receives a HTTP GET request or a JSON and stores the information on a DB managed by MongoDB. 
  * **Frontend**: Made with Angular 8. It shows a web page that requests the information in the DB from the Backend and shows it to the user.
 
 
