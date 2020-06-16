@@ -33,3 +33,7 @@ cd frontend
 ng serve
 ```
 Go to http://locahost:4200 to see the web page
+
+![web page](images/portalweb.png)
+
+
