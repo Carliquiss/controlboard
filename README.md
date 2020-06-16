@@ -1,4 +1,4 @@
-# Control Dashboard for IoT devices on MongoDB 💻
+# Control Dashboard for IoT devices 💻
 _This project contains a Backend and a Frontend to show information from IoT devices obtained with [**this**](https://github.com/Carliquiss/uart_extractor) tool_
 
 ## ⚙️ How does it works 
